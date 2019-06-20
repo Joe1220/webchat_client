@@ -1,7 +1,7 @@
-import { observable } from 'mobx'
+import { RouteComponentProps } from 'react-router-dom'
  
 class NavStore {
-  routing: any
+  routing: RouteComponentProps
   constructor(...args: any) {
 
     this.routing = args[0].routing
