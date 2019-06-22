@@ -27,6 +27,7 @@
     "node_modules",
     "build",
     "webpack",
-    "jest"
+    "jest",
+    "**/*.spec.ts"
   ]
 }

@@ -20,7 +20,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   },
   "eslintConfig": {
     "extends": "react-app"
