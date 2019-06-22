@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components'
 
 import rootStore from 'stores/RootStore'
 import { Home } from 'containers'
-import styles from 'themes/styles'
+import styles from 'components/_settings/styles'
 
 const browserHistory = createBrowserHistory()
 const history = syncHistoryWithStore(browserHistory, rootStore.routing)
