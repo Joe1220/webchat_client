@@ -2,7 +2,7 @@ import React from 'react'
 import { createBrowserHistory } from 'history'
 import { Provider, observer } from 'mobx-react'
 import { Switch, Router, Route } from 'react-router-dom'
-import { RouterStore, syncHistoryWithStore } from 'mobx-react-router'
+import { syncHistoryWithStore } from 'mobx-react-router'
 import { ThemeProvider } from 'styled-components'
 
 import rootStore from 'stores/RootStore'
@@ -20,7 +20,7 @@ class App extends React.Component<{}> {
 
   render() {
     return (
-      <Provider {...RouterStore}>
+      <Provider {...rootStore}>
         <ThemeProvider theme={styles}>
           <Router history={history}>
             <Switch>
