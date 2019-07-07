@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components'
 import { create } from 'mobx-persist'
 
 import rootStore from 'stores/RootStore'
-import { Home, Login, NoMatch } from 'containers'
+import { Lobby, Login, NoMatch } from 'containers'
 import themes from 'components/_settings/styles'
 
 const browserHistory = createBrowserHistory()
@@ -28,7 +28,7 @@ class App extends React.Component {
           <Router history={history}>
             {isLogged ? (
               <Switch>
-                <Route path='/' component={Home} />
+                <Route path='/' component={Lobby} />
                 <Route component={NoMatch} />
               </Switch>
             ) : (

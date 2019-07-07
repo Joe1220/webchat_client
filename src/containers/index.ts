@@ -1,3 +1,3 @@
-export { default as Home } from 'containers/Home'
+export { default as Lobby } from 'containers/Lobby'
 export { default as Login } from 'containers/Login'
 export { default as NoMatch } from 'containers/NoMatch'
