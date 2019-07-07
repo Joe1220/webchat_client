@@ -4,6 +4,7 @@ import { Provider, observer } from 'mobx-react'
 import { Switch, Router, Route } from 'react-router-dom'
 import { syncHistoryWithStore } from 'mobx-react-router'
 import { ThemeProvider } from 'styled-components'
+import { create } from 'mobx-persist'
 
 import rootStore from 'stores/RootStore'
 import { Home, Login, NoMatch } from 'containers'
@@ -16,6 +17,7 @@ const history = syncHistoryWithStore(browserHistory, rootStore.routing)
 class App extends React.Component {
   constructor(props: any) {
     super(props)
+    this._hydrateStores()
   }
 
   render() {
@@ -39,6 +41,11 @@ class App extends React.Component {
         </ThemeProvider>
       </Provider>
     )
+  }
+
+  async _hydrateStores() {
+    const hydrate = create()
+    await hydrate('User', rootStore.userStore)
   }
 }
 
