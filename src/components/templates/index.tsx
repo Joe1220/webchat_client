@@ -1,5 +1,2 @@
-import styled from 'styled-components'
-
-const Test = styled('div')``
-
-export default Test
+export { default as BaseTemplte } from './BaseTemplate'
+export { default as ModalTemplate } from './ModalTemplate'
