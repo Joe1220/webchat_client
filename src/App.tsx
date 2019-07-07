@@ -6,26 +6,35 @@ import { syncHistoryWithStore } from 'mobx-react-router'
 import { ThemeProvider } from 'styled-components'
 
 import rootStore from 'stores/RootStore'
-import { Home } from 'containers'
-import styles from 'components/_settings/styles'
+import { Home, Login, NoMatch } from 'containers'
+import themes from 'components/_settings/styles'
 
 const browserHistory = createBrowserHistory()
 const history = syncHistoryWithStore(browserHistory, rootStore.routing)
 
 @observer
-class App extends React.Component<{}> {
+class App extends React.Component {
   constructor(props: any) {
     super(props)
   }
 
   render() {
+    const { isLogged } = rootStore.userStore
     return (
       <Provider {...rootStore}>
-        <ThemeProvider theme={styles}>
+        <ThemeProvider theme={themes}>
           <Router history={history}>
-            <Switch>
-              <Route path='/' component={Home} />
-            </Switch>
+            {isLogged ? (
+              <Switch>
+                <Route path='/' component={Home} />
+                <Route component={NoMatch} />
+              </Switch>
+            ) : (
+              <Switch>
+                <Route path='/' component={Login} />
+                <Route component={NoMatch} />
+              </Switch>
+            )}
           </Router>
         </ThemeProvider>
       </Provider>
