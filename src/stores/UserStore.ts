@@ -3,7 +3,7 @@ import { persist } from 'mobx-persist'
 
 export interface IUserStore {
   nickname?: string
-  isLogged: false
+  isLogged: boolean
   signin?(name: string): void
 }
 
