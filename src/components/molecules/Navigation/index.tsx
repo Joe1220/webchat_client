@@ -1,14 +1,13 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import Nav from 'components/atoms/Nav'
-import Link from 'components/atoms/Link'
+import { Nav, Link, A } from 'components/atoms'
 
 const Navigation: React.FC = observer(() => {
   return (
     <Nav>
       <li><Link to='/'>Lobby</Link></li>
-      <li><Link to='/about'>About</Link></li>
+      <li><A href='http://jshresume.co.nf/'>About</A></li>
     </Nav>
   )
 })
