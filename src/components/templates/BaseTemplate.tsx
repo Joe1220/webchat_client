@@ -1,20 +1,30 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
+import { observer } from 'mobx-react'
 
-interface IStyledBaseTemplate {
-  src?: string
-}
+import { NavBar } from 'components/organisms'
 
-const StyledBaseTemplate = styled('div')<IStyledBaseTemplate>`
+const StyledBaseTemplate = styled('div')`
   display: flex;
   flex-direction: column;
-  padding-top: 3.75rem;
+  padding-top: 2rem;
   min-height: 100vh;
   box-sizing: border-box;
-
-  ${props => props.src && css`
-    background: ${props.src} no-repeat;
-    background-size: cover;
-  `}
 `
 
-export default StyledBaseTemplate
+const StyledContent = styled('div')`
+  width: 100%;
+  box-sizing: border-box;
+  padding: ${props => props.theme.spaces.lg};
+  max-width: 920px;
+`
+
+
+export default observer(({ children, ...props }) => (
+  <StyledBaseTemplate {...props}>
+    <NavBar />
+    <StyledContent {...props}>
+    {children}
+    </StyledContent>
+  </StyledBaseTemplate>
+))
