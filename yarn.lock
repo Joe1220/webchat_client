@@ -1907,6 +1907,11 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/socket.io-client@^1.4.32":
+  version "1.4.32"
+  resolved "https://registry.yarnpkg.com/@types/socket.io-client/-/socket.io-client-1.4.32.tgz#988a65a0386c274b1c22a55377fab6a30789ac14"
+  integrity sha512-Vs55Kq8F+OWvy1RLA31rT+cAyemzgm0EWNeax6BWF8H7QiiOYMJIdcwSDdm5LVgfEkoepsWkS+40+WNb7BUMbg==
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
@@ -11637,6 +11642,11 @@ styled-components@^4.3.2:
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
     supports-color "^5.5.0"
+
+styled-spinkit@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/styled-spinkit/-/styled-spinkit-0.7.3.tgz#0dbe0ccdd1ef9c721a21a5fffc07d1cfce28a0ba"
+  integrity sha512-leiOFk4TDXvcQAwZBgkqIpznjgPOTgCd9b4M6YWv+XdVwXZk2BPYSmhabSFgUXyWI+bTTx4WT6uwMtKfKFXwVA==
 
 stylehacks@^4.0.0:
   version "4.0.3"
