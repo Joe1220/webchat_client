@@ -7,7 +7,7 @@ interface IModal {
   children: React.ReactDOM
 }
 
-export default () => {
+export default (): any => {
   return Component => {
     @inject('modalStore')
     @observer
