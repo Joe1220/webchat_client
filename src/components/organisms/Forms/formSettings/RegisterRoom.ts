@@ -20,7 +20,7 @@ const fields = [
 
 const hooks = {
   onSuccess(form: any) {
-    rootStore.chatStore.createRoom(form.values().roomName)
+    rootStore.roomStore.createRoom(form.values().roomName)
     return
   },
 

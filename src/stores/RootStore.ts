@@ -2,7 +2,7 @@ import { RouterStore } from 'mobx-react-router'
 import NavStore from './NavStore'
 import UserStore from './UserStore'
 import ModalStore from './ModalStore'
-import ChatStore from './ChatStore'
+import RoomStore from './RoomStore'
 import SocketStore from './SocketStore'
 
 class RootStore {
@@ -10,7 +10,7 @@ class RootStore {
   navStore: any
   userStore: any
   modalStore: any
-  chatStore: any
+  roomStore: any
   socketStore: any
 
   constructor() {
@@ -18,7 +18,7 @@ class RootStore {
     this.navStore = new NavStore(this)
     this.userStore = new UserStore(this)
     this.modalStore = new ModalStore()
-    this.chatStore = new ChatStore(this)
+    this.roomStore = new RoomStore(this)
     this.socketStore = new SocketStore()
   }
 }

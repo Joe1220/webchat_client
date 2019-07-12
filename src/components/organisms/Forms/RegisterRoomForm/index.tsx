@@ -7,7 +7,7 @@ import { Field } from 'components/molecules'
 import Modal from 'components/organisms/Forms/formSettings/ModalForm'
 
 interface IRegisterRoomForm {
-  chatStore?: any
+  roomStore?: any
   form?: any
 }
 
@@ -24,22 +24,19 @@ const StyledRegisterRoomForm = styled('form')`
 `
 
 @Modal()
-@inject('chatStore')
+@inject('roomStore')
 @observer
 export default class RegisterRoomForm extends React.Component<IRegisterRoomForm> {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
-    const { form, chatStore } = this.props
+    const { form, roomStore } = this.props
     return (
       <StyledRegisterRoomForm onSubmit={form.onSubmit}>
         <P lg thick blue>CREATE ROOM!</P>
         <br />
         <Field htmlFor={form.$('roomName').id}
                label={form.$('roomName').label}
-               value={chatStore.roomName} 
+               value={roomStore.roomName} 
                field={form.$('roomName')}
                placeholder={form.$('roomName').placeholder}
                {...form.$('roomName').bind()}
