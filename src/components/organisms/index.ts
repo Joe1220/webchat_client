@@ -1,4 +1,5 @@
 export { default as NavBar } from './NavBar'
+export { default as RoomList } from './RoomList'
 export { default as LoadingDecorator } from './LoadingDecorator'
 
 // Forms 

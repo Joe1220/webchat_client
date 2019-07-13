@@ -7,6 +7,7 @@ interface MyProps {
   blue?: boolean
   white?: boolean
   error?: boolean
+  overflow?: boolean
 }
 
 const StyledP = styled('p')<MyProps>`
@@ -36,6 +37,11 @@ const StyledP = styled('p')<MyProps>`
   ${props => props.error && css`
     color: ${props => props.theme.colors.error};
   `}
+
+  ${props => props.overflow && css`
+    text-overflow: ellipsis; overflow: hidden;
+  `}
+
 `
 
 export default StyledP

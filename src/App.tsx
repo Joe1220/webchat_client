@@ -28,12 +28,12 @@ class App extends React.Component {
           <Router history={history}>
             {isLogged ? (
               <Switch>
-                <Route path='/' component={Lobby} />
+                <Route exact path='/' component={Lobby} />
                 <Route component={NoMatch} />
               </Switch>
             ) : (
               <Switch>
-                <Route path='/' component={Login} />
+                <Route exact path='/' component={Login} />
                 <Route component={NoMatch} />
               </Switch>
             )}

@@ -13,10 +13,12 @@ const StyledBaseTemplate = styled('div')`
 `
 
 const StyledContent = styled('div')`
-  width: 100%;
+  width: calc(100% - 40px);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   padding: ${props => props.theme.spaces.lg};
-  max-width: 920px;
+  min-width: 920px;
 `
 
 
@@ -24,7 +26,7 @@ export default observer(({ children, ...props }) => (
   <StyledBaseTemplate {...props}>
     <NavBar />
     <StyledContent {...props}>
-    {children}
+      {children}
     </StyledContent>
   </StyledBaseTemplate>
 ))
