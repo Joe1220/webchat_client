@@ -13,6 +13,12 @@ class ModalStore {
   toggleModal() {
     this.visible = !this.visible
   }
+
+  @action.bound
+  closeModal(type) {
+    this.visible = false
+    this.data = type
+  }
 }
 
 export default ModalStore
