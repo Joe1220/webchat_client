@@ -12,6 +12,13 @@ export default (): any => {
     @inject('modalStore')
     @observer
     class Modal extends React.Component<IModal> {
+      constructor(props) {
+        super(props)
+      }
+
+      componentWillUnmount() {
+        this.props.modalStore.closeModal()
+      }
 
       render() {
         const { children, modalStore } = this.props

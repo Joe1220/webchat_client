@@ -20,7 +20,6 @@ export default (option: Ioption): any => {
 
       async componentDidMount() {
         await option.fetchData()
-          .then(() => console.log('done!'))
         this.isFetching = true
       }
 
