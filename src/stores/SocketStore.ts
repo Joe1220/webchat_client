@@ -21,7 +21,13 @@ class SocketStore {
   @action.bound
   async on(channel: string = 'message', savingDataFunc: any = null) {
     await this.socketClient.on(channel, (data) => {
-      console.log('check socket datas: ', data)
+      savingDataFunc(data)
+    })
+  }
+
+  @action.bound
+  async once(channel: string = 'message', savingDataFunc: any = null) {
+    await this.socketClient.once(channel, (data) => {
       savingDataFunc(data)
     })
   }
