@@ -1,5 +1,13 @@
 import { observable } from 'mobx'
 
+import { IUserModel } from 'stores/models/UserModel'
+
+export interface IMessage {
+  id: number
+  user: IUserModel
+  message: string
+}
+
 class MessageModel {
   store
   @observable id

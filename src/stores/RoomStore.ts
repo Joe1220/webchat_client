@@ -1,38 +1,22 @@
+import { persist } from 'mobx-persist'
 import { observable, action } from 'mobx'
 
 import { IUserModel } from 'stores/models/UserModel'
-
-interface IRoom {
-  id: number
-  title: string
-  users: IUserModel[]
-  messages: IMessage[]
-}
-
-interface IMessage {
-  id: number
-  user: IUserModel
-  message: string
-}
+import RoomModel from './models/RoomModel'
 
 class RoomStore {
   @observable root: any
-  @observable activatedRoom: IRoom | null
-  @observable rooms: IRoom[]
+  @persist('object') @observable activatedRoom: any
+  @observable rooms: IUserModel[]
   constructor(root?) {
     this.root = root
-    this.activatedRoom = null
+    this.activatedRoom = new RoomModel(this, {})
     this.rooms = []
   }
 
   @action.bound
-  setActivatedRoom(room: IRoom) {
-    this.activatedRoom = room
-  }
-
-  @action.bound
   roomOut() {
-    this.activatedRoom = null
+    this.activatedRoom = new RoomModel(this, {})
   }
 
   @action.bound
@@ -41,9 +25,17 @@ class RoomStore {
       title, 
       user: this.root.userStore.currentUser 
     })
-   
-    this.getRooms()
+    await this.root.socketStore.once('create_room', this.setActivatedRoom)
   }
+
+  @action.bound
+  async enterRoom(roomId: number) {
+    await this.root.socketStore.send('enter_room', {
+      id: roomId,
+      user: this.root.userStore.currentUser
+    })
+    this.root.navStore.routing.push(`/room/${roomId}`)
+  } 
 
   @action.bound
   async getRooms() {
@@ -55,6 +47,13 @@ class RoomStore {
   @action.bound
   setField (field: string, value: any) {
     this[field] = value
+  }
+
+  @action.bound
+  setActivatedRoom(value) {
+    this.activatedRoom = new RoomModel(this, value)
+    this.root.navStore.routing.push(`room/${value.id}`)
+
   }
 }
 

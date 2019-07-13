@@ -1,5 +1,15 @@
 import { observable } from 'mobx'
 
+import { IUserModel } from 'stores/models/UserModel'
+import { IMessage } from 'stores/models/MessageModel'
+
+export interface IRoomModel {
+  id: number
+  title: string
+  users: IUserModel[]
+  messages: IMessage[]
+}
+
 class RoomModel {
   store
   @observable id
@@ -7,8 +17,8 @@ class RoomModel {
   @observable users
   @observable messages
 
-  constructor(store, room) {
-    const { id, title, users, messages } = room
+  constructor(store, datum) {
+    const { id = 0, title = '', users = [], messages } = datum
     this.store = store
     this.id = id
     this.title = title
