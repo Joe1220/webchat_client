@@ -15,8 +15,6 @@ const StyledBaseTemplate = styled('div')`
 const StyledContent = styled('div')`
   width: calc(100% - 40px);
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
   padding: ${props => props.theme.spaces.lg};
   min-width: 920px;
 `
