@@ -15,8 +15,16 @@ class RoomStore {
   }
 
   @action.bound
-  roomOut() {
-    this.activatedRoom = new RoomModel(this, {})
+  async enterLobby() {
+    await this.root.socketStore.send('enter_lobby')
+
+    await this.root.socketStore.on('get_rooms', this.setRooms)
+  }
+
+  @action.bound
+  async leaveLobby() {
+    await this.root.socketStore.emit('leave_lobby')
+    await this.root.socketStore.off('get_rooms')
   }
 
   @action.bound
@@ -25,7 +33,7 @@ class RoomStore {
       title, 
       user: this.root.userStore.currentUser 
     })
-    await this.root.socketStore.once('create_room', this.setActivatedRoom)
+    await this.root.socketStore.once('in_room', this.setActivatedRoomAndGoPage)
   }
 
   @action.bound
@@ -34,14 +42,22 @@ class RoomStore {
       id: roomId,
       user: this.root.userStore.currentUser
     })
-    this.root.navStore.routing.push(`/room/${roomId}`)
+
+    await this.root.socketStore.on('in_room', this.setActivatedRoom)
   } 
 
   @action.bound
-  async getRooms() {
-    await this.root.socketStore.send('get_rooms')
-    await this.root.socketStore.on('get_rooms', this.setField.bind(this, 'rooms'))
-    return this.rooms
+  async leaveRoom() {
+    console.log('why not work?', this.activatedRoom)
+    await this.root.socketStore.send('leave_room', {
+      id: this.activatedRoom.id,
+      user: this.root.userStore.currentUser
+    })
+    await this.root.socketStore.off('in_room')
+      .then(() => {
+        this.setActivatedRoom({})
+        this.root.navStore.routing.push('/')
+      })
   }
 
   @action.bound
@@ -50,10 +66,19 @@ class RoomStore {
   }
 
   @action.bound
+  setActivatedRoomAndGoPage(value) {
+    this.activatedRoom = new RoomModel(this, value)
+    this.root.navStore.goDetailPage('room', value.id)
+  }
+
+  @action.bound
   setActivatedRoom(value) {
     this.activatedRoom = new RoomModel(this, value)
-    this.root.navStore.routing.push(`room/${value.id}`)
+  }
 
+  @action.bound
+  setRooms(rooms) {
+    this.rooms = rooms.map(room => new RoomModel(this, room))
   }
 }
 

@@ -5,6 +5,7 @@ import { ChasingDots } from 'styled-spinkit'
 
 interface Ioption {
   fetchData: Function
+  closeData: Function
 }
 
 export default (option: Ioption): any => {
@@ -21,6 +22,10 @@ export default (option: Ioption): any => {
       async componentDidMount() {
         await option.fetchData()
         this.isFetching = true
+      }
+
+      async componentWillUnmount() {
+        await option.closeData()
       }
 
       render() {

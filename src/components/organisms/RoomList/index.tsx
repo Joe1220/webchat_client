@@ -26,7 +26,7 @@ interface IRoomList {
   roomStore?: any
 }
 
-@LoadingDecorator({ fetchData: rootStore.roomStore.getRooms })
+@LoadingDecorator({ fetchData: rootStore.roomStore.enterLobby, closeData: () => rootStore.roomStore.leaveLobby })
 @inject('roomStore')
 @observer
 export default class RoomList extends React.Component<IRoomList> {

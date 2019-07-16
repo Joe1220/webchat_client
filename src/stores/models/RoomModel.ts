@@ -18,7 +18,7 @@ class RoomModel {
   @observable messages
 
   constructor(store, datum) {
-    const { id = 0, title = '', users = [], messages } = datum
+    const { id = 0, title = '', users = [], messages = [] } = datum
     this.store = store
     this.id = id
     this.title = title

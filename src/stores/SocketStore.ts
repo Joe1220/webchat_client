@@ -31,6 +31,11 @@ class SocketStore {
       savingDataFunc(data)
     })
   }
+
+  @action.bound
+  async off(channel: string = 'message') {
+    await this.socketClient.off(channel)
+  }
 }
 
 export default SocketStore
