@@ -43,7 +43,7 @@ export default class RegisterRoomForm extends React.Component<IRegisterRoomForm>
         />
         <br />
         <Button full
-                onclick={form.onSubmit}
+                onClick={form.onSubmit}
         >
           Submit
         </Button>

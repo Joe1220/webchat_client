@@ -35,7 +35,7 @@ const LoginForm: React.FC<ILoginForm> = inject('userStore')(observer(({ userStor
     />
     <br />
     <Button full
-            onclick={form.onSubmit}
+            onClick={form.onSubmit}
     >
       Submit
     </Button>
