@@ -10,6 +10,7 @@ stories
   .add('Button', () => (
     <Button lg={boolean('large button', false)}
             full={boolean('full width button', false)}
+            grey={boolean('grey button', false)}
             onClick={() => null}
     >
       {text('text', 'test')}

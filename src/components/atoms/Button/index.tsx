@@ -2,12 +2,13 @@ import styled, { css } from 'styled-components'
 
 interface IButton {
   lg?: boolean
+  grey?: boolean
   full?: boolean
-  onclick?: (e: any) => void
+  onClick?: (e: any) => void
 } 
 
 const Button = styled('button')<IButton>`
-  display: block;
+  display: inline-block;
   font-size: ${props => props.theme.fontSize.base};
   color: ${props => props.theme.colors.white};
   padding: ${props => props.theme.spaces.buttonPadding};
@@ -23,6 +24,10 @@ const Button = styled('button')<IButton>`
 
   ${props => props.lg && css`
     font-size: ${props => props.theme.fontSize.lg};
+  `}
+
+  ${props => props.grey && css`
+    background: ${props => props.theme.colors.grey};
   `}
 
   ${props => props.full && css`
