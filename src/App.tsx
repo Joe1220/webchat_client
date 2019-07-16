@@ -8,6 +8,7 @@ import { create } from 'mobx-persist'
 
 import rootStore from 'stores/RootStore'
 import { Lobby, Login, NoMatch } from 'containers'
+import Routes from 'routes'
 import themes from 'components/_settings/styles'
 
 const browserHistory = createBrowserHistory()
@@ -28,8 +29,7 @@ class App extends React.Component {
           <Router history={history}>
             {isLogged ? (
               <Switch>
-                <Route exact path='/' component={Lobby} />
-                <Route component={NoMatch} />
+                <Routes.AuthenticatedRoutes />
               </Switch>
             ) : (
               <Switch>
