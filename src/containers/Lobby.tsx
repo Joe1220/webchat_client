@@ -12,7 +12,7 @@ interface ILobby {
 }
 
 const Lobby: React.FC<ILobby> = observer(() => (
-  <BaseTemplte>
+  <BaseTemplte nav>
     <RegisterRoomForm form={form}>
       <Button>방 등록하기</Button>
     </RegisterRoomForm>

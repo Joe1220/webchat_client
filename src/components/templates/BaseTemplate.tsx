@@ -19,10 +19,9 @@ const StyledContent = styled('div')`
   min-width: 920px;
 `
 
-
-export default observer(({ children, ...props }) => (
+export default observer(({ nav, children, ...props }) => (
   <StyledBaseTemplate {...props}>
-    <NavBar />
+    {nav && <NavBar />}
     <StyledContent {...props}>
       {children}
     </StyledContent>
