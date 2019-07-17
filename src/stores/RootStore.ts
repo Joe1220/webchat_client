@@ -3,6 +3,7 @@ import NavStore from './NavStore'
 import UserStore from './UserStore'
 import ModalStore from './ModalStore'
 import RoomStore from './RoomStore'
+import MessageStore from './MessageStore'
 import SocketStore from './SocketStore'
 
 class RootStore {
@@ -11,6 +12,7 @@ class RootStore {
   userStore: any
   modalStore: any
   roomStore: any
+  messageStore: any
   socketStore: any
 
   constructor() {
@@ -19,6 +21,7 @@ class RootStore {
     this.userStore = new UserStore(this)
     this.modalStore = new ModalStore()
     this.roomStore = new RoomStore(this)
+    this.messageStore = new MessageStore(this)
     this.socketStore = new SocketStore()
   }
 }

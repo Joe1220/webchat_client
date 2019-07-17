@@ -23,7 +23,9 @@ class RoomStore {
 
   @action.bound
   async leaveLobby() {
-    await this.root.socketStore.emit('leave_lobby')
+    await this.root.socketStore.emit('leave_lobby', {
+      id: this.root.userStore.currentUser.id
+    })
     await this.root.socketStore.off('get_rooms')
   }
 
@@ -68,12 +70,17 @@ class RoomStore {
   @action.bound
   setActivatedRoomAndGoPage(value) {
     this.activatedRoom = new RoomModel(this, value)
+    //메세지 호출
+    this.root.messageStore.getMessages(this.activatedRoom.messages)
+
     this.root.navStore.goDetailPage('room', value.id)
   }
 
   @action.bound
   setActivatedRoom(value) {
     this.activatedRoom = new RoomModel(this, value)
+    //메세지 호출
+    this.root.messageStore.getMessages(this.activatedRoom.messages)
   }
 
   @action.bound
