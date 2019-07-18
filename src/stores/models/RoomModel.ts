@@ -4,7 +4,7 @@ import { IUserModel } from 'stores/models/UserModel'
 import { IMessage } from 'stores/models/MessageModel'
 
 export interface IRoomModel {
-  id: number
+  id: number | null
   title: string
   users: IUserModel[]
   messages: IMessage[]
@@ -18,7 +18,7 @@ class RoomModel {
   @observable messages
 
   constructor(store, datum) {
-    const { id = 0, title = '', users = [], messages = [] } = datum
+    const { id = null, title = '', users = [], messages = [] } = datum
     this.store = store
     this.id = id
     this.title = title

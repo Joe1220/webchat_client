@@ -6,7 +6,6 @@ export interface IUserModel {
 }
 
 class UserModel {
-  store
   @observable id
   @observable nickname
 
