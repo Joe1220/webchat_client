@@ -31,6 +31,7 @@ const LoginForm: React.FC<ILoginForm> = inject('userStore')(observer(({ userStor
            value={userStore.nickname} 
            field={form.$('nickname')}
            placeholder={form.$('nickname').placeholder}
+           full
            {...form.$('nickname').bind()}
     />
     <br />

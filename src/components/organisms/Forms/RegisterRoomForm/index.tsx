@@ -39,6 +39,7 @@ export default class RegisterRoomForm extends React.Component<IRegisterRoomForm>
                value={roomStore.roomName} 
                field={form.$('roomName')}
                placeholder={form.$('roomName').placeholder}
+               full
                {...form.$('roomName').bind()}
         />
         <br />
