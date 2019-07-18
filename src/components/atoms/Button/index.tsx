@@ -10,6 +10,7 @@ interface IButton {
 const Button = styled('button')<IButton>`
   display: inline-block;
   font-size: ${props => props.theme.fontSize.base};
+  justify-content: center;
   color: ${props => props.theme.colors.white};
   padding: ${props => props.theme.spaces.buttonPadding};
   background: ${props => props.theme.colors.blue};

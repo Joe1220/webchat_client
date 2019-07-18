@@ -6,6 +6,7 @@ interface MyProps {
   thick?: boolean
   blue?: boolean
   white?: boolean
+  grey?: boolean
   error?: boolean
   overflowing?: boolean
 }
@@ -13,6 +14,7 @@ interface MyProps {
 const StyledP = styled('p')<MyProps>`
   font-size: ${props => props.theme.fontSize.base};
   font-weight: 500;
+  margin: 0;
 
   ${props => props.thick && css`
     font-weight: 700;
@@ -32,6 +34,10 @@ const StyledP = styled('p')<MyProps>`
 
   ${props => props.white && css`
     color: ${props => props.theme.colors.white};
+  `}
+
+  ${props => props.grey && css`
+    color: ${props => props.theme.colors.grey};
   `}
 
   ${props => props.error && css`

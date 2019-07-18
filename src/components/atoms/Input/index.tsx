@@ -1,12 +1,14 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 interface IInput {
   placeholder?: string
   value?: string
+  onChange?: (e: any) => void
+  full?: boolean
 }
 
 const Input = styled('input')<IInput>`
-  width: 100%;
+  flex: 1 0 auto;
   box-sizing: border-box;
   height: 0.8rem + 2px;
   font-size: 1rem;
@@ -15,6 +17,10 @@ const Input = styled('input')<IInput>`
   border: 1px solid ${props => props.theme.colors.grey};
   border-radius: 0.25rem;
   transition: all ease-out .45s;
+
+  ${props => props.full && css`
+    width: 100%;
+  `}
 `
 
 export default Input
