@@ -1,4 +1,3 @@
-import { persist } from 'mobx-persist'
 import { observable, action } from 'mobx'
 
 import MessageModel, { IMessage } from './models/MessageModel'
