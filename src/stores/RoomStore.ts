@@ -23,9 +23,12 @@ class RoomStore {
 
   @action.bound
   async leaveLobby() {
+    // 로그아웃
+    this.root.userStore.logout()
     await this.root.socketStore.emit('leave_lobby', {
       id: this.root.userStore.currentUser.id
     })
+    
     await this.root.socketStore.off('get_rooms')
   }
 

@@ -31,6 +31,12 @@ class UserStore {
   } 
 
   @action.bound
+  logout() {
+    this.isLogged = false
+    this.currentUser = new UserModel(this)
+  }
+
+  @action.bound
   setField (field: string, value: any) {
     this[field] = value
   }
