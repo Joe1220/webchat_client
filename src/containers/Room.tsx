@@ -1,19 +1,34 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { observable } from 'mobx'
+import { observable, reaction } from 'mobx'
 
 import { BaseTemplte } from 'components/templates'
-import { RoomHead } from 'components/molecules'
+import { RoomHead, MessageField } from 'components/molecules'
+import { RoomBody } from 'components/organisms'
 
 interface IRoom {
   id: number
   roomStore?: any
+  messageStore?: any
 }
 
-@inject('roomStore')
+@inject('roomStore', 'messageStore')
 @observer
 export default class Room extends React.Component<IRoom> {
-  @observable reaction
+  @observable isNotRoom
+
+  constructor(props) {
+    super(props)
+
+    reaction(
+      () => props.roomStore.isNotRoom,
+      (isNotExist) => {
+        if(isNotExist) {
+          props.roomStore.leaveRoom()
+        }
+      }
+    )
+  }
 
   componentDidMount() {
     this.props.roomStore.enterRoom(this.props.id)
@@ -24,11 +39,21 @@ export default class Room extends React.Component<IRoom> {
   }
 
   render() {
-    const { activatedRoom } = this.props.roomStore
-    console.log('checking: ', activatedRoom)
+    const { setField, sendMessage, message } = this.props.messageStore
+    if(this.isNotRoom) {
+      return <div>Not room</div>
+    }
     return (
-      <BaseTemplte>
-        <RoomHead />
+      <BaseTemplte HeadComponent={RoomHead}
+                   Footer={() => (
+                      <MessageField value={message.message} 
+                                    placeholder={'채팅을 입력해주세요.'}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setField('message', e.target.value)}
+                                    onSubmit={sendMessage}
+                      />
+                   )}
+      >
+        <RoomBody />
       </BaseTemplte>
     )
   }
