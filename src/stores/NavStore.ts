@@ -6,11 +6,17 @@ class NavStore {
   routing: RouteComponentProps
   constructor(...args: any) {
     this.routing = args[0].routing
+
   }
 
   @computed
   get _params() {
     return queryString.parse(this.routing.location.search) 
+  }
+
+  @computed
+  get _location() {
+    return this.routing.location.pathname
   }
 
   @action

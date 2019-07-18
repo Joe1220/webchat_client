@@ -5,11 +5,12 @@ import { Lobby, Room, NoMatch } from 'containers'
 
 interface IAuthenticatedRoutes {
   navStore?: any
+  roomStore?: any
 }
  
-const AuthenticatedRoutes: React.FC<IAuthenticatedRoutes> = inject('navStore')(observer(({ navStore }) => {
+const AuthenticatedRoutes: React.FC<IAuthenticatedRoutes> = inject('navStore', 'roomStore')(observer(({ navStore }) => {
   const { id } = navStore._params
-  if(!id || id === undefined) {
+  if(navStore._location === '/') {
     return <Lobby />
   } else if(id) {
     return <Room id={id} />
