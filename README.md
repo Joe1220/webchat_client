@@ -1,4 +1,10 @@
-# typescript-frontend-boilerplate
+# WEB CHAT CLIENT
+
+## Skill Stack
+- Language: Typescript, React
+- Data State: Mobx, Mobx-persist
+- Http request: axios
+- 양방향 통신: socketio-client
 
 ----------
 
