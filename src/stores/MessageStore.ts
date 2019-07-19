@@ -15,7 +15,6 @@ class RoomStore {
   // id는 roomId
   @action.bound
   async sendMessage() {
-    console.log('why?', this.root.userStore.currentUser)
     await this.root.socketStore.send('message', {
       userId: this.root.userStore.currentUser.id,
       roomId: this.root.roomStore.activatedRoom.id,
