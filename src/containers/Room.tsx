@@ -10,9 +10,10 @@ interface IRoom {
   id: number
   roomStore?: any
   messageStore?: any
+  navStore?: any
 }
 
-@inject('roomStore', 'messageStore')
+@inject('roomStore', 'messageStore', 'navStore')
 @observer
 export default class Room extends React.Component<IRoom> {
   @observable isNotRoom
@@ -31,7 +32,7 @@ export default class Room extends React.Component<IRoom> {
   }
 
   componentDidMount() {
-    this.props.roomStore.enterRoom(this.props.id)
+    this.props.roomStore.enterRoom(Number(this.props.navStore._params.id)) 
   }
 
   componentWillUnmount() {

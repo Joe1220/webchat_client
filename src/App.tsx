@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components'
 import { create } from 'mobx-persist'
 
 import rootStore from 'stores/RootStore'
-import { Lobby, Login, NoMatch } from 'containers'
+import { Login, NoMatch } from 'containers'
 import Routes from 'routes'
 import themes from 'components/_settings/styles'
 
@@ -28,9 +28,7 @@ class App extends React.Component {
         <ThemeProvider theme={themes}>
           <Router history={history}>
             {isLogged ? (
-              <Switch>
-                <Routes.AuthenticatedRoutes />
-              </Switch>
+              <Routes.AuthenticatedRoutes />
             ) : (
               <Switch>
                 <Route exact path='/' component={Login} />

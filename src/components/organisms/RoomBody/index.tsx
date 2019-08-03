@@ -43,7 +43,7 @@ const StyledMessageBody = styled('span')<IStyledMessageBody>`
   `}
 `
 
-const RoomBody: React.FC<IRoomBody> = inject('messageStore', 'userStore')(observer(({ messageStore, userStore, _me }) => {
+const RoomBody: React.FC<IRoomBody> = inject('messageStore', 'userStore')(observer(({ messageStore, userStore }) => {
   const { messages } = messageStore
   const userId = userStore.currentUser.id
   return (
