@@ -59,6 +59,9 @@ class RoomStore {
 
   @action.bound
   async leaveRoom() {
+    if(this.activatedRoom.users.length < 1) {
+      this.activatedRoom.remove()
+    }
     await this.root.socketStore.send('leave_room', {
       id: this.activatedRoom.id,
       user: this.root.userStore.currentUser
