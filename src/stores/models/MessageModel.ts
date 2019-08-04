@@ -1,4 +1,4 @@
-import { observable } from 'mobx'
+import { observable, action } from 'mobx'
 
 import { IUserModel } from 'stores/models/UserModel'
 
@@ -15,7 +15,7 @@ class MessageModel {
   @observable message
 
   constructor(store, room) {
-    const { id, user, message } = room
+    const { id, user, message="" } = room
     this.store = store
     this.id = id
     this.user = user

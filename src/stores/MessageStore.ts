@@ -4,11 +4,11 @@ import MessageModel, { IMessage } from './models/MessageModel'
 
 class RoomStore {
   @observable root: any
-  @observable message: IMessage
+  @observable message
   @observable messages: IMessage[]
   constructor(root?) {
     this.root = root
-    this.message = new MessageModel(this, {})
+    this.message = ""
     this.messages = []
   }
 
@@ -28,6 +28,11 @@ class RoomStore {
 async getMessages(messages) {
   this.messages = messages.map(message => new MessageModel(this, message))
 }
+  @action.bound
+  setMessage(e) {
+    console.log('check field and value: ', this.message)
+    this.message = e.target.value
+  }
 
   @action.bound
   setField (field: string, value: any) {

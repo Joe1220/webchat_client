@@ -1,15 +1,10 @@
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import styled from 'styled-components'
 import { Input, Button } from 'components/atoms'
 
 interface IMessageField {
-  value?: string;
-  field?: any;
-  onChange?: any;
-  onSubmit?: any;
-  placeholder?: string;
-  inputProps?: any;
+  messageStore?: any
 }
 
 const StyledField = styled('div')`
@@ -23,13 +18,18 @@ const StyledField = styled('div')`
   }
 `
 
-const MessageField: React.FC<IMessageField> = observer(({ onSubmit, ...inputProps }) => (
-  <StyledField>
-    <Input {...inputProps} />
-    <Button onClick={onSubmit}>
-      입력
-    </Button>
-  </StyledField>
-))
+const MessageField: React.FC<IMessageField> = inject('messageStore')(observer(({ messageStore }) => {
+  const { setMessage, sendMessage, message } = messageStore 
+  return (
+    <StyledField>
+      <Input onChange={setMessage}
+             value={message}
+      />
+      <Button onClick={sendMessage}>
+        입력
+      </Button>
+    </StyledField>
+  )
+}))
 
 export default MessageField

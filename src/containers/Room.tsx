@@ -13,7 +13,7 @@ interface IRoom {
   navStore?: any
 }
 
-@inject('roomStore', 'messageStore', 'navStore')
+@inject('roomStore', 'navStore')
 @observer
 export default class Room extends React.Component<IRoom> {
   @observable isNotRoom
@@ -40,19 +40,12 @@ export default class Room extends React.Component<IRoom> {
   }
 
   render() {
-    const { setField, sendMessage, message } = this.props.messageStore
     if(this.isNotRoom) {
       return <div>Not room</div>
     }
     return (
       <BaseTemplte HeadComponent={RoomHead}
-                   Footer={() => (
-                      <MessageField value={message.message} 
-                                    placeholder={'채팅을 입력해주세요.'}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setField('message', e.target.value)}
-                                    onSubmit={sendMessage}
-                      />
-                   )}
+                   Footer={MessageField}
       >
         <RoomBody />
       </BaseTemplte>
