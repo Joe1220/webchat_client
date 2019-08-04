@@ -1,4 +1,4 @@
-import { observable } from 'mobx'
+import { observable, action } from 'mobx'
 
 import { IUserModel } from 'stores/models/UserModel'
 import { IMessage } from 'stores/models/MessageModel'
@@ -24,6 +24,11 @@ class RoomModel {
     this.title = title
     this.users = users
     this.messages = messages
+  }
+
+  @action.bound
+  async remove() {
+    this.store.rooms.remove(this)
   }
 }
 

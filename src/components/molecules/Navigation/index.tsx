@@ -8,6 +8,7 @@ const Navigation: React.FC = observer(() => {
     <Nav>
       <li><Link to='/'>Lobby</Link></li>
       <li><A href='http://jshresume.co.nf/'>About</A></li>
+      <li><Link to='/how-many'>HOW MANY</Link></li>
     </Nav>
   )
 })
