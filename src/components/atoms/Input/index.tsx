@@ -18,6 +18,11 @@ const Input = styled('input')<IInput>`
   border-radius: 0.25rem;
   transition: all ease-out .45s;
 
+  &::placeholder {
+    opacity: 0.8;
+    font-weight: 200;
+  }
+
   ${props => props.full && css`
     width: 100%;
   `}
