@@ -8,6 +8,7 @@ export interface IUserStore {
   socketStore: any
   isLogged: boolean
   currentUser: IUserModel
+  users: IUserModel
   signin?(name: string): void
 }
 
@@ -15,10 +16,12 @@ class UserStore {
   @observable root: any
   @persist('object') @observable currentUser
   @persist @observable isLogged: boolean
+  @observable users
   constructor(root?) {
     this.root = root
     this.isLogged = false
     this.currentUser = new UserModel(this)
+    this.users = []
   }
 
   @action.bound
@@ -34,6 +37,13 @@ class UserStore {
   logout() {
     this.isLogged = false
     this.currentUser = new UserModel(this)
+  }
+
+  @action.bound
+  async getUsers() {
+    await this.root.socketStore.send('get_users')
+
+    await this.root.socketStore.on('get_users', this.setField.bind(this, 'users'))
   }
 
   @action.bound
