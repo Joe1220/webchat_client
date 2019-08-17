@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 interface MyProps {
   src: string;
@@ -7,11 +7,11 @@ interface MyProps {
   alt: string;
 }
 
-const StyledIcon = styled('img')<MyProps>`
+const StyledIcon = styled("img")<MyProps>`
   width: ${props => props.width};
   height: ${props => props.height};
   border: none;
   background: inherit;
-`
+`;
 
-export default StyledIcon
+export default StyledIcon;

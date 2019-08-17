@@ -1,21 +1,36 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { text, boolean } from '@storybook/addon-knobs'
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { text, boolean } from "@storybook/addon-knobs";
 
-import P from './'
+import { wInfo } from "../../../../.storybook/utils";
+import P from "./";
 
-const stories = storiesOf('Components/Atoms', module)
+const stories = storiesOf("Components/Atoms", module);
 
-stories
-  .add('Text', () => (
-    <React.Fragment>
-      <P  sm={boolean('small text', false)}
-          lg={boolean('large text', false)}
-          blue={boolean('blue text', false)}
+stories.add(
+  "Text",
+  () => (
+    <>
+      <P
+        sm={boolean("small text", false)}
+        lg={boolean("large text", false)}
+        blue={boolean("blue text", false)}
       >
-        {text('text', 'test text')}
+        {text("text", "test text")}
       </P>
-    </React.Fragment>
-  ))
+    </>
+  ),
+  wInfo(`
+    ### Notes
 
-export default undefined
+    This is a Text(P tag)
+
+
+    ### Usage
+    ~~~js
+      <P sm>hello</P>
+    ~~~
+  `)
+);
+
+export default undefined;
