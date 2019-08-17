@@ -1,40 +1,71 @@
-import React from 'react'
-import { Provider } from 'mobx-react'
-import { configure, addDecorator } from '@storybook/react'
-import { ThemeProvider } from 'styled-components'
-import styled from 'styled-components'
-import { Router } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
-import { withKnobs } from '@storybook/addon-knobs'
+import React from "react";
+import { Provider } from "mobx-react";
+import { configure, addDecorator } from "@storybook/react";
+import { ThemeProvider } from "styled-components";
+import styled from "styled-components";
+import { Router } from "react-router-dom";
+import { createBrowserHistory } from "history";
+import { withKnobs } from "@storybook/addon-knobs";
+import { withInfo } from "@storybook/addon-info";
 
-import rootStore from '../src/stores/RootStore'
-import theme from '../src/components/_settings/styles'
+import rootStore from "../src/stores/RootStore";
+import theme from "../src/components/_settings/styles";
 
-const StyledContainer = styled('div')`
+const wInfoStyle = {
+  header: {
+    h1: {
+      marginRight: "14px",
+      fontSize: "20px",
+      display: "inline"
+    },
+    body: {
+      paddingTop: 0,
+      paddingBottom: 0
+    },
+    h2: {
+      display: "inline",
+      color: "#999"
+    }
+  },
+  infoBody: {
+    backgroundColor: "#eee",
+    padding: "5px 5px",
+    lineHeight: "2"
+  }
+};
+
+const StyledContainer = styled("div")`
   padding: 10px;
-`
+`;
 
-// automatically import all files ending in *.stories.tsx
-const req = require.context('../src', true, /\.stories\.tsx$/)
+addDecorator(
+  withInfo({
+    inline: true,
+    source: false,
+    styles: wInfoStyle
+  })
+);
 
-function loadStories() {
-  req.keys().forEach(req);
-}
-
-addDecorator((story) => {
+addDecorator(story => {
   return (
     <Provider {...rootStore}>
       <ThemeProvider theme={theme}>
         <Router history={createBrowserHistory()}>
-          <StyledContainer> 
-            {story()}
-          </StyledContainer>
+          <StyledContainer>{story()}</StyledContainer>
         </Router>
       </ThemeProvider>
     </Provider>
-  )
-})
+  );
+});
 
-addDecorator(withKnobs)
+addDecorator(withKnobs);
 
-configure(loadStories, module)
+// automatically import all files ending in *.stories.tsx
+const req = require.context("../src", true, /\.stories\.tsx$/);
+
+function loadStories() {
+  require("./welcomeStory");
+  req.keys().forEach(req);
+}
+
+configure(loadStories, module);
