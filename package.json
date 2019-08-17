@@ -31,7 +31,7 @@
     "build": "react-app-rewired build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest"
+    "test": "react-scripts test --watch"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,6 +59,7 @@
     "@storybook/addon-viewport": "^5.1.11",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
+    "@types/enzyme": "^3.10.3",
     "@types/history": "^4.7.2",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.0.8",
@@ -72,6 +73,9 @@
     "@types/validatorjs": "^3.15.0",
     "awesome-typescript-loader": "^5.2.1",
     "customize-cra": "^0.2.13",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.0",
     "jest": "24.7.1",
     "react-app-rewire-typescript": "^2.0.2",
     "react-app-rewired": "^2.1.3",
