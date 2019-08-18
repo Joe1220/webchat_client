@@ -1,50 +1,50 @@
-import React from 'react'
-import { inject, observer } from 'mobx-react'
-import StyledModal from 'react-modal'
+import React, { useEffect } from "react";
+import { inject, observer } from "mobx-react";
+import StyledModal from "react-modal";
 
 interface IModal {
-  modalStore: any
-  children: React.ReactDOM
+  modalStore: any;
+  children: React.ReactDOM;
 }
 
 export default (): any => {
   return Component => {
-    @inject('modalStore')
-    @observer
-    class Modal extends React.Component<IModal> {
-
-      componentWillUnmount() {
-        this.props.modalStore.closeModal()
-      }
-
-      render() {
-        const { children, modalStore } = this.props
-        const { toggleModal } = modalStore
+    return inject("modalStore")(
+      observer((props: IModal) => {
+        useEffect(() => {
+          return () => {
+            props.modalStore.closeModal();
+          };
+        }, []);
+        const { children, modalStore } = props;
+        const { toggleModal } = modalStore;
         return (
           <React.Fragment>
-            <span style={{ cursor: 'pointer' }} onClick={toggleModal}>{children}</span>
-            <StyledModal isOpen={modalStore.visible} 
-                         onRequestClose={toggleModal}
-                         style={customStyles}
-                         ariaHideApp={false}
+            <span style={{ cursor: "pointer" }} onClick={toggleModal}>
+              {children}
+            </span>
+            <StyledModal
+              isOpen={modalStore.visible}
+              onRequestClose={toggleModal}
+              style={customStyles}
+              ariaHideApp={false}
             >
-              <Component {...this.props} />
+              <Component {...props} />
             </StyledModal>
           </React.Fragment>
-        )
-      }
-    }
-    return Modal
-  }
-}
+        );
+      })
+    );
+  };
+};
 
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)"
   }
 };
