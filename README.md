@@ -7,7 +7,7 @@
 - Style: Styled-components, CSS
 - Component Guid: storybook
 - 양방향 통신: socketio-client
-- Deploy: EC2(nginx)
+- Deploy: heroku
 
 ---
 
@@ -32,3 +32,9 @@ http://13.209.87.14/
 #### 3) State library: Mobx
 
 #### 4) Style: Styled-Components, CSS
+
+![webchat_1](https://user-images.githubusercontent.com/30386090/100142529-6149b980-2ed7-11eb-903e-8d70ac153683.PNG)
+
+![webchat_2](https://user-images.githubusercontent.com/30386090/100142525-60b12300-2ed7-11eb-9197-fff45b3a0e09.PNG)
+
+![webchat_3](https://user-images.githubusercontent.com/30386090/100142528-6149b980-2ed7-11eb-95c6-0be53f56baab.PNG)
