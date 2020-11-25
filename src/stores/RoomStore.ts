@@ -103,7 +103,6 @@ class RoomStore {
 
   @action.bound
   setRooms(rooms) {
-    console.log("check rooms: ", rooms)
     this.rooms = rooms.map((room) => new RoomModel(this, room))
   }
 }
